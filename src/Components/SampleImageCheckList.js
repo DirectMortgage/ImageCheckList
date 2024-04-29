@@ -3969,7 +3969,7 @@ function Form() {
           }
         );
       }
-
+      
       // if (FirstTimeLog == 0) setEditedResJSON(originalData);
 
       let requestOptions = {
@@ -3987,6 +3987,12 @@ function Form() {
       originalData["SentDate"] = formattedDate;
       originalData["LoanId"] = LoanId;
       // }
+      try {
+        if(JSON.parse(OriginalResponsefromAPI)['directwarejobid'] != undefined)
+          originalData.directwarejobid = JSON.parse(OriginalResponsefromAPI)['directwarejobid']
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
 
       let IsReveiwflag = 0;
       if (iReviewed) IsReveiwflag = 1;
