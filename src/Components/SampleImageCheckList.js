@@ -2534,10 +2534,10 @@ function Form() {
   // }, [ResJSON]);
 
   const formatDateTimeNew = (date) => {
-    if (date === "" || date === undefined) return "";
+    if (date === "" || date === undefined) return ""; 
 
-    const currentDate = new Date();
-
+  const currentDate =  new Date(`${date}T00:00:00`);  
+    
     const currentYear = currentDate.getFullYear().toString();
 
     let [month, day, year] = date.split("/");
