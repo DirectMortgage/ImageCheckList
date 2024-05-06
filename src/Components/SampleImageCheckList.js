@@ -2383,6 +2383,10 @@ function Form() {
   }
 
   function fnCheckFeedbackJSON(docType, DocDbFields__) {
+    //Checks for Doc typ 169
+    //If the Original fields values are same then dont send to endpoint
+    //If Doc type is changed then send to endpoints
+    //If doc type is changed to misc but there is a json then also send to Endpoints
     // debugger;
     let validateJSON = true;
 
@@ -2394,10 +2398,11 @@ function Form() {
           "Current Balance"
         )
       )
-        validateJSON = false;
+      validateJSON = true; //validateJSON = false;
 
       if (JSON.stringify(OrgDocDbFields) === JSON.stringify(DocDbFields))
-        validateJSON = false;
+        validateJSON = true;
+        //validateJSON = false;
 
       setOrgDocDbFields(structuredClone(DocDbFields));
       // if (DocDbFields__ !== undefined && DocDbFields__ !== "") {
@@ -2410,7 +2415,7 @@ function Form() {
         ParsedJson = JSON.parse(OriginalResJSON)["extraction_json"] ?? {};
       else ParsedJson = JSON.parse(OriginalResJSON);
       if (JSON.stringify(ParsedJson) === JSON.stringify(ResJSON))
-        validateJSON = false;
+      validateJSON = true; //validateJSON = false;
     }
 
     if (
