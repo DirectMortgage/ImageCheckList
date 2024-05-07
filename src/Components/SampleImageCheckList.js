@@ -3177,7 +3177,8 @@ function Form() {
                         DisplayName: "Account Number " + (ind ? ind + 1 : "1"),
                       }; // Create a shallow copy of the item
                       // copyDocDbFields.push(duplicateItem);
-                      debugger;
+                      //debugger;
+                      if(!(copyDocDbFields.filter(({Dbfieldid})=>Dbfieldid==duplicateItem['Dbfieldid'])||[]).length)
                       copyDocDbFields.splice(
                         index - 1 + (ind + 1),
                         0,
@@ -3827,6 +3828,30 @@ function Form() {
                   })
 
                  
+                }
+              }
+
+              if (Number(item.Dbfieldid) === Number(-7215)) {
+                if (OriginalJSON_?.account_holder?.length > 0) {
+                    if(item.DisplayName.trim() == 'Account Holder') {
+                      OriginalJSON_.account_holder[0] = item.Value;
+                    }                      
+                    else if(item.DisplayName.trim() == 'Account Holder 1') {
+                      OriginalJSON_.account_holder[1] = item.Value;
+                    }                      
+                    else if(item.DisplayName.trim() == 'Account Holder 2') {
+                      OriginalJSON_.account_holder[2] = item.Value;
+
+                    }
+                      
+                  // OriginalJSON_?.account_holder?.forEach((ing, j) => {
+                  //   console.log(ing)
+
+                  // });
+                } else {
+                  AssetTypeOptionValue.forEach((asst)=>{
+                    OriginalJSON_?.account_holder?.push(item.Value);
+                  })
                 }
               }
 
