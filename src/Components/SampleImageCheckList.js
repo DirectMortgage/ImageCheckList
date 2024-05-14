@@ -2342,7 +2342,9 @@ function Form() {
           LoanId: LoanId,
           FilterJSON: FilterJSON,
           IsBorExists: WhichBorrower != 0 && WhichBorrower != -1 ? 1 : 0,
-          IsEntityExists: WhichEnity != 0 && WhichEnity != -1 ? 1 : 0,
+          IsEntityExists: WhichEnity != 0 && WhichEnity != -1 ? 1
+          : EmployerListSelected != 0 && DocTypeValue == 169 ? 1
+          : 0,
           BorId: WhichBorrower != 0 && WhichBorrower != -1 ? WhichBorrower : 0,
           EntityId:
             WhichEnity != 0 && WhichEnity != -1
@@ -2900,7 +2902,7 @@ function Form() {
                 ? JSON.parse(JSON.parse(response).Table[0].Column1)
                 : [];
             // setDocDbFields([...DocDbFields, ...DocDbFields_]);
-            debugger;
+            //debugger;
             setDocDbFields(DocDbFields_);
 
             // if (DocTypeValue == 23)
@@ -3146,7 +3148,7 @@ function Form() {
                         DisplayName: "Account Holder " + (ind ? ind : ""),
                       }; // Create a shallow copy of the item
                       // copyDocDbFields.push(duplicateItem);
-                      debugger;
+                      // debugger;
                       copyDocDbFields.splice(index + ind + 1, 0, duplicateItem);
                     });
                     // copyDocDbFields = copyDocDbFields.filter((item) => item.DbFieldId !== -7216);
