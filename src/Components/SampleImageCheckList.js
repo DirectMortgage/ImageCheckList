@@ -2284,7 +2284,7 @@ function Form() {
       'document.querySelectorAll(".textLayer span")',
       document.querySelectorAll(".textLayer span").length
     );
-    if (obj || obj !== {}) {
+    if (obj || obj.length !== 0) { //} !== {}) {
       setResJSON(obj);
       let ele = [],
         PdfEle = Array.from(document.querySelectorAll(".textLayer span")),
