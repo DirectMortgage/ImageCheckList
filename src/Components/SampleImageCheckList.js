@@ -1511,12 +1511,18 @@ function Form() {
         let DocTypeval = 269,
           selText = "miscellaneous";
         if (iparsedResponse && iparsedResponse.hasOwnProperty("doc_type")) {
-          if (iparsedResponse["doc_type"] != null) {
-            DocTypeval = iparsedResponse["doc_type"] || "miscellaneous";
+          
+          const queryString = window.location.search;
+          const searchParams = new URLSearchParams(queryString);
+          let QDocType = searchParams.get("Dtype") || "";
+
+          if (iparsedResponse["doc_type"] != null || QDocType) {
+            DocTypeval = iparsedResponse["doc_type"] || QDocType || "miscellaneous";
 
             let Filterdoctype = DocType.filter((items) => {
               return (
-                items.DocType.toString().replaceAll(" ", "").toLowerCase() ===
+                // items["DocType"].toString().replaceAll(" ", "").toLowerCase() === //COmmented this line for handling the issue onload not loading the fields properly
+                items[iparsedResponse["doc_type"] ? "DocType" : "Id"].toString().replaceAll(" ", "").toLowerCase() ===
                 DocTypeval.replaceAll(" ", "").toLowerCase()
               );
             });

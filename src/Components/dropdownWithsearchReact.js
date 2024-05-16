@@ -122,7 +122,7 @@ export default function DropDownWithSearch(props) {
         onFocus={() => {
           // console.log('inputvalues  selectedOptions.label',selectedOptions.label);
           setinputvalues(selectedOptions?.label||'');
-          debugger;
+          //debugger;
           inputRef.current.value = selectedOptions?.label||''
         }}
         onBlur={() => {
